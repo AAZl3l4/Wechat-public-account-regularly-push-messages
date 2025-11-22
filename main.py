@@ -16,6 +16,10 @@ app_secret = os.environ["APP_SECRET"]
 user_ids = os.environ["USER_ID"].split(',')
 template_ids = os.environ["TEMPLATE_ID"].split(',')
 
+# 打印微信配置
+print( f"打印系统参数 : USER_ID: {user_ids}, TEMPLATE_ID: {template_ids}")
+print(template_ids[0])
+
 # 发薪日
 SOLARY_DAY = "15"
 city = "日照"
@@ -141,3 +145,8 @@ for j, user_id in enumerate(user_ids):
         print(f"✅ 成功: {res}")
     except Exception as e:
         print(f"❌ 失败: {e}")
+
+
+# for key, item in data.items():
+#     print(f"  内容: {item['value']}")
+#     print(f"  颜色: {item['color']}")
