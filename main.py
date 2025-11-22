@@ -120,7 +120,7 @@ data = {
     "city": {"value": cit},
     "weather": {"value": wea},
     "temp": {"value": str(tem)},
-    "wind_dir": {"value": wind_dir},
+    "wind_dir": {"value": "" + wind_dir},
     "wind_power": {"value": wind_power},
     "humidity": {"value": str(humidity) + "%"},
     "solary_days": {"value": "倒计时:" + str(solary_days)},
