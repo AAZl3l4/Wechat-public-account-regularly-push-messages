@@ -135,7 +135,7 @@ for i in range(len(solarys)):
         "temperature": {"value": f"{tem}°C", "color": get_random_color()},
         "wind_direction": {"value": wind_dir, "color": get_random_color()},
         "wind_power": {"value": f"{wind_power}级", "color": get_random_color()},
-        "humidity": {"value": f"{humidity}%"， "color": get_random_color()},  
+        "humidity": {"value": f"{humidity}%", "color": get_random_color()},  
         "solary": {"value": str(get_solary(solarys[i])), "color": get_random_color()},
         "history_today": {"value": get_history_today(), "color": "#000000"},
         "news": {"value": get_news(), "color": "#000000"},
