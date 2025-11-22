@@ -22,6 +22,7 @@ solarys = ["15"]
 # 城市固定为日照
 city = "日照"
 
+print(f"调试信息 - 用户ID: {user_ids},appid: {app_id}. secret: {app_secret}, 模板ID: {template_ids}, 发薪日: {solarys}")
 
 # 获取天气详情（含风向、风力、湿度）
 def get_weather(city):
@@ -135,7 +136,7 @@ for i in range(len(solarys)):
         "temperature": {"value": f"{tem}°C", "color": get_random_color()},
         "wind_direction": {"value": wind_dir, "color": get_random_color()},
         "wind_power": {"value": f"{wind_power}级", "color": get_random_color()},
-        "humidity": {"value": f"{humidity}%", "color": get_random_color()},  
+        "humidity": {"value": f"{humidity}%", "color": get_random_color()},
         "solary": {"value": str(get_solary(solarys[i])), "color": get_random_color()},
         "history_today": {"value": get_history_today(), "color": "#000000"},
         "news": {"value": get_news(), "color": "#000000"},
@@ -150,6 +151,7 @@ for i in range(len(solarys)):
 
     # 微信发送（已注释）
     res = wm.send_template(user_ids[i], template_ids[i], data)
+    print("微信返回",res)
 
 # for key, item in data.items():
 #     if isinstance(item, dict) and 'value' in item:
