@@ -124,7 +124,7 @@ data = {
     "wind_power": {"value": wind_power},
     "humidity": {"value": str(humidity) + "%"},
     "solary_days": {"value": str(solary_days)},
-    "history_today": {"value": get_history_today()},
+    "history": {"value": "距离发工资还有:" + get_history_today()},
     "news": {"value": get_news()},
     "lunar_date": {"value": lunar_info["date"]},
     "lunar_term": {"value": lunar_info["term"]},
