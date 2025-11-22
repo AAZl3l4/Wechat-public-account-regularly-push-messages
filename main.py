@@ -116,23 +116,22 @@ solary_days = get_solary()
 lunar_info = get_lunar()
 
 data = {
-    # 只传纯文本值，不加符号
-    "city": cit,
-    "date": dat,
-    "weather": wea,
-    "temp": str(tem),
-    "wind_dir": wind_dir,
-    "wind_power": wind_power,
-    "humidity": str(humidity),
-    "solary_days": str(solary_days),
-    "history": get_history_today(),
-    "news": get_news(),
-    "lunar_date": lunar_info["date"],
-    "lunar_term": lunar_info["term"],
-    "lunar_yi": lunar_info["yi"],
-    "lunar_ji": lunar_info["ji"],
-    "yiyan": get_yiyan(),
-    "words": get_words()
+    "date": {"value": dat},
+    "city": {"value": cit},
+    "weather": {"value": wea},
+    "temperature": {"value": str(tem) + "°C"},
+    "wind_direction": {"value": wind_dir},
+    "wind_power": {"value": wind_power},
+    "humidity": {"value": str(humidity) + "%"},
+    "solary_days": {"value": str(solary_days)},
+    "history_today": {"value": get_history_today()},
+    "news": {"value": get_news()},
+    "lunar_date": {"value": lunar_info["date"]},
+    "lunar_term": {"value": lunar_info["term"]},
+    "lunar_yi": {"value": lunar_info["yi"]},
+    "lunar_ji": {"value": lunar_info["ji"]},
+    "yiyan": {"value": get_yiyan()},
+    "words": {"value": get_words()}
 }
 
 # 发送
