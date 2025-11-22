@@ -17,7 +17,7 @@ user_ids = os.environ["USER_ID"].split(',')
 template_ids = os.environ["TEMPLATE_ID"].split(',')
 
 # 发薪日配置
-solarys = "15"
+solarys = ["15"]
 
 # 城市固定为日照
 city = "日照"
@@ -135,7 +135,7 @@ for i in range(len(solarys)):
         "temperature": {"value": f"{tem}°C", "color": get_random_color()},
         "wind_direction": {"value": wind_dir, "color": get_random_color()},
         "wind_power": {"value": f"{wind_power}级", "color": get_random_color()},
-        "humidity": {"value": f"{humidity}%"， "color": get_random_color()},
+        "humidity": {"value": f"{humidity}%"， "color": get_random_color()},  
         "solary": {"value": str(get_solary(solarys[i])), "color": get_random_color()},
         "history_today": {"value": get_history_today(), "color": "#000000"},
         "news": {"value": get_news(), "color": "#000000"},
