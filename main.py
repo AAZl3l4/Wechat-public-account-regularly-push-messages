@@ -37,9 +37,9 @@ def get_solary():
         next = datetime.strptime(f"{date.today().year}-{date.today().month}-{SOLARY_DAY}", "%Y-%m-%d")
         if next < datetime.now():
             if next.month == 12:
-                next = next.替换(year=next.year + 1, month=1)
+                next = next.replace(year=next.year + 1, month=1)
             else:
-                next = next.替换(month=next.month + 1)
+                next = next.replace(month=next.month + 1)
         return (next - today).days
     except Exception as e:
         print(f"❌ 发薪日失败: {e}")
@@ -87,7 +87,7 @@ def get_lunar():
         return {
             "date": lunar_date,
             "term": term,
-            "yi": taboo.get('recommends'， ''),
+            "yi": taboo.get('recommends', ''),
             "ji": taboo.get('avoids', '')
         }
     except Exception:
@@ -110,7 +110,7 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 
-wea, tem, wind_dir, wind_power,humidity = get_weather(city)
+wea, tem, wind_dir, wind_power, humidity = get_weather(city)
 cit, dat = get_city_date(city)
 solary_days = get_solary()
 lunar_info = get_lunar()
