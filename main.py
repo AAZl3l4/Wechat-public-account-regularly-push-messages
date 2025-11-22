@@ -17,7 +17,7 @@ user_ids = os.environ["USER_ID"].split(',')
 template_ids = os.environ["TEMPLATE_ID"].split(',')
 
 # 发薪日配置
-solarys = os.environ.get("SOLARY", "15").split(',')
+solarys = "15"
 
 # 城市固定为日照
 city = "日照"
@@ -84,7 +84,7 @@ def get_news():
         news_list = res['data']['news'][:3]
         return "\n".join([f"{i + 1}. {news}" for i, news in enumerate(news_list)])
     except Exception:
-        return "今日新闻加载中..."
+        return "今日安好，静待花开"
 
 
 # 黄历信息
@@ -114,7 +114,7 @@ def get_yiyan():
 
 # 字体随机颜色
 def get_random_color():
-    return "#%06x" % random.randint(0， 0xFFFFFF)
+    return "#%06x" % random.randint(0, 0xFFFFFF)
 
 
 # 主逻辑
@@ -123,25 +123,25 @@ client = WeChatClient(app_id, app_secret)
 wm = WeChatMessage(client)
 
 # 处理每个发薪日配置
-for i 在 range(len(solarys)):
+for i in range(len(solarys)):
     wea, tem, wind_dir, wind_power, humidity = get_weather(city)
     cit, dat = get_city_date(city)
 
     # 构建模板数据
     data = {
-        "date": {"value": f"今日日期：{dat}", "color": get_random_color()},
-        "city": {"value": f"当前城市：{cit}", "color": get_random_color()},
-        "weather": {"value": f"今日天气：{wea}", "color": get_random_color()},
-        "temperature": {"value": f"当前温度：{tem}°C", "color": get_random_color()},
-        "wind_direction": {"value": f"💨 风向：{wind_dir}", "color": get_random_color()},
-        "wind_power": {"value": f"🌪️ 风力：{wind_power}级", "color": get_random_color()},
-        "humidity": {"value": f"💧 湿度：{humidity}%", "color": get_random_color()},
-        "solary": {"value": f"距离发工资还有{get_solary(solarys[i])}天", "color": get_random_color()},
-        "history_today": {"value": f"📜 历史上的今天：\n{get_history_today()}", "color": get_random_color()},
-        "news": {"value": f"📰 今日要闻：\n{get_news()}", "color": get_random_color()},
-        "lunar": {"value": f"📿 黄历指南：\n{get_lunar()}", "color": get_random_color()},
-        "yiyan": {"value": f"💭 今日一言：{get_yiyan()}", "color": get_random_color()},
-        "words": {"value": f"💕 每日情话：{get_words()}", "color": get_random_color()}
+        "date": {"value": dat, "color": get_random_color()},
+        "city": {"value": cit, "color": get_random_color()},
+        "weather": {"value": wea, "color": get_random_color()},
+        "temperature": {"value": f"{tem}°C", "color": get_random_color()},
+        "wind_direction": {"value": wind_dir, "color": get_random_color()},
+        "wind_power": {"value": f"{wind_power}级", "color": get_random_color()},
+        "humidity": {"value": f"{humidity}%"， "color": get_random_color()},
+        "solary": {"value": str(get_solary(solarys[i])), "color": get_random_color()},
+        "history_today": {"value": get_history_today(), "color": "#000000"},
+        "news": {"value": get_news(), "color": "#000000"},
+        "lunar": {"value": get_lunar(), "color": "#000000"},
+        "yiyan": {"value": get_yiyan(), "color": get_random_color()},
+        "words": {"value": get_words(), "color": get_random_color()}
     }
 
     # 发薪日特殊文案
@@ -150,3 +150,14 @@ for i 在 range(len(solarys)):
 
     # 微信发送（已注释）
     res = wm.send_template(user_ids[i], template_ids[i], data)
+
+# for key, item in data.items():
+#     if isinstance(item, dict) and 'value' in item:
+#         print(f"【{key}】")
+#         print(item['value'])
+#         if 'color' in item:
+#             print(f"颜色: {item['color']}")
+#     else:
+#         print(f"【{key}】")
+#         print(item)
+#     print()
